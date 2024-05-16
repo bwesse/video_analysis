@@ -1,0 +1,91 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.egg-info/
+.dist-info/
+
+# Conda environments
+.env
+*.conda
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyCharm
+.idea/
+
+# VSCode
+.vscode/
+
+# Environments
+env/
+env.bak/
+venv/
+venv.bak/
+
+# Data
+*.csv
+*.h5
+*.db
+
+# LaTeX
+*.aux
+*.bbl
+*.blg
+*.brf
+*.fls
+*.fdb_latexmk
+*.ilg
+*.idx
+*.ind
+*.lof
+*.log
+*.lot
+*.out
+*.toc
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+*.xdv
+
+# LaTeX intermediate files
+*.dvi
+*.pdf
+*.ps
+*.eps
+
+# LaTeX directories
+_build/
+_thesis/
+_pdf/
+
+# Miscellaneous
+.DS_Store
+Thumbs.db

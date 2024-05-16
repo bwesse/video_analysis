@@ -1,0 +1,22 @@
+name: video_analysis_env #mine is named differntly cuz im stupi ("imageAnalysis")
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - opencv
+  - tensorflow=2.4.1
+  - pytorch
+  - torchvision
+  - torchaudio
+  - numpy=1.19.5
+  - pandas=1.2.3
+  - scikit-learn
+  - ffmpeg
+  - pip
+  - sqlite
+
+
+#to create environment:
+#conda env create -f environment.yml
+#conda activate video_analysis_env
