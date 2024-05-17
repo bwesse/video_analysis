@@ -111,6 +111,52 @@ python env_check.py
 ## Summary
 
 By following these steps, you can set up a Conda environment with all necessary libraries and ensure they are correctly installed and configured. Use the verification script to confirm that everything is working as expected.
-```
 
-This Markdown file provides a detailed guide on setting up and verifying your Conda environment, including troubleshooting steps for common issues.
+
+# Project Directory and File Structure
+
+## Description of Each Directory and File
+
+### `data/`
+Contains all the data related to the project.
+- **`V3C100/`**: Raw video files from the dataset.
+- **`processed/`**: Processed data, such as extracted keyframes and transcoded videos.
+  - **`keyframes/`**: Extracted keyframes from the videos.
+  - **`transcoded/`**: Transcoded smaller versions of the videos for playback.
+
+### `models/`
+Contains all the models used in the project.
+- **`pretrained/`**: Pretrained models used for content analysis.
+- **`custom/`**: Custom-trained models, if any.
+
+### `notebooks/`
+Jupyter notebooks for exploratory data analysis, model evaluation, and other experiments.
+
+### `scripts/`
+Python scripts for various tasks.
+- **`download_data.py`**: Script to download the dataset.
+- **`extract_keyframes.py`**: Script to extract keyframes from videos.
+- **`analyze_content.py`**: Script to perform content analysis using neural networks.
+- **`transcode_videos.py`**: Script to transcode videos to smaller versions.
+
+### `src/`
+Source code for the project.
+- **`backend/`**: Backend modules such as database interaction and API.
+  - **`database.py`**: Database setup and interaction.
+  - **`api.py`**: API for the backend.
+- **`frontend/`**: Frontend files for the GUI.
+  - **`gui.py`**: Main GUI application code.
+  - **`styles.css`**: CSS for styling the GUI.
+- **`utils/`**: Utility modules.
+  - **`helpers.py`**: Helper functions used across the project.
+
+### `tests/`
+Unit tests and integration tests for the project.
+- **`test_extract_keyframes.py`**: Tests for the keyframe extraction functionality.
+- **`test_analyze_content.py`**: Tests for the content analysis functionality.
+
+### Root-Level Files
+- **`.gitignore`**: Specifies files and directories to be ignored by Git.
+- **`README.md`**: Project documentation and instructions.
+- **`requirements.txt`**: List of Python packages required for the project (if using `pip`).
+- **`environment.yml`**: Conda environment configuration file.
