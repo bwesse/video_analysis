@@ -160,3 +160,116 @@ Unit tests and integration tests for the project.
 - **`README.md`**: Project documentation and instructions.
 - **`requirements.txt`**: List of Python packages required for the project (if using `pip`).
 - **`environment.yml`**: Conda environment configuration file.
+
+
+
+# Content-Based Video Retrieval System
+
+## Project Overview
+This project focuses on developing a content-based video retrieval system using a subset of the V3C-1 dataset. The system is designed to find small video segments of interest based on Known-Item Search (KIS) queries, which is a use case of the Video Browser Showdown (VBS).
+
+## Directory Structure
+Ensure your project directory is organized as follows:
+```
+videoanalysis/
+│
+├── data/
+├── doc/
+├── models/
+├── notebooks/
+├── scripts/
+│   ├── extract_keyframes.py
+│   ├── analyze_content.py
+├── setup/
+├── src/
+│   ├── backend/
+│   │   └── database.py
+│   ├── frontend/
+│   │   └── app.py
+│   └── utils/
+├── tests/
+├── .gitignore
+├── Project Assignment.pdf
+└── README.md
+```
+
+## Components
+
+### 1. Keyframe Extraction (`scripts/extract_keyframes.py`)
+This script extracts keyframes from video files at specified intervals using OpenCV.
+
+### 2. Content Analysis (`scripts/analyze_content.py`)
+This script uses a pretrained VGG16 model to analyze keyframes and generate content descriptions.
+
+### 3. Database Storage (`src/backend/database.py`)
+This script sets up a SQLite database to store the analysis results and metadata of keyframes.
+
+### 4. Streamlit GUI (`src/frontend/app.py`)
+This script provides a graphical user interface for interacting with the video analysis system.
+
+## How Streamlit Works
+Streamlit is an open-source app framework for Machine Learning and Data Science teams. It allows the creation of beautiful, custom web apps for machine learning and data science projects with minimal effort. Here’s how it works in this project:
+
+### Streamlit Installation
+Ensure you have Streamlit installed:
+```bash
+pip install streamlit
+```
+
+### Running the Streamlit App
+Navigate to the project directory and run the Streamlit app using the following command:
+```bash
+streamlit run src/frontend/app.py
+```
+
+### Streamlit App Overview
+The Streamlit app provides an interface for uploading videos, processing them, and searching through the analyzed content. Here’s a breakdown of the key functionalities:
+
+1. **Video Upload**:
+    - The user uploads a video file through the Streamlit interface.
+    - The uploaded video is saved to a temporary file.
+
+2. **Video Processing**:
+    - The video is processed to extract keyframes at specified intervals (e.g., every 2 seconds).
+    - Extracted keyframes are analyzed using a pretrained neural network (VGG16) to generate content descriptions.
+    - Analysis results are stored in a SQLite database.
+
+3. **Search Functionality**:
+    - The user can enter a search query.
+    - The system queries the database for keyframes with matching analysis descriptions.
+    - Matching keyframes are displayed along with their corresponding timestamps in the video.
+
+4. **DRES Integration**:
+    - The user can select a keyframe and send it to the Distributed Retrieval Evaluation Server (DRES) for evaluation.
+
+## Information Flow
+
+### Step-by-Step Information Flow:
+1. **User Interface**:
+   - User uploads a video file through the Streamlit GUI.
+   
+2. **Temporary Storage**:
+   - The uploaded video is saved to a temporary file on the server.
+   
+3. **Video Processing**:
+   - The video is processed frame-by-frame to extract keyframes at regular intervals using OpenCV.
+   
+4. **Content Analysis**:
+   - Each extracted keyframe is analyzed using a pretrained VGG16 neural network.
+   - The neural network generates a list of content descriptions for each keyframe.
+   
+5. **Database Storage**:
+   - Analysis results, including the video ID, frame ID, and content descriptions, are stored in a SQLite database.
+   
+6. **Search**:
+   - User inputs a search query through the Streamlit GUI.
+   - The system searches the SQLite database for keyframes matching the query.
+   
+7. **Display Results**:
+   - Matching keyframes and their corresponding timestamps are displayed in the Streamlit GUI.
+   
+8. **DRES Integration**:
+   - User selects a keyframe to send to the DRES server for evaluation.
+   - The selected keyframe is sent to DRES using an API call (implementation pending).
+
+By following these steps, the system enables efficient content-based retrieval of video segments based on the user’s query, utilizing a combination of video processing, neural network-based content analysis, and interactive search capabilities provided by Streamlit.
