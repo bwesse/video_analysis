@@ -41,7 +41,7 @@ if uploaded_file is not None:
 
     while success:
         success, frame = cap.read()
-        if frame_id % (frame_rate * 2) == 0 and success:  # Extract a frame every 2 seconds
+        if frame_id % (frame_rate * 20) == 0 and success:  # Extract a frame every 2 seconds
             keyframe_path = os.path.join(keyframes_dir, f"frame_{frame_id}.jpg")
             cv2.imwrite(keyframe_path, frame)
             st.image(frame, caption=f"Keyframe at {frame_id//frame_rate} seconds")
