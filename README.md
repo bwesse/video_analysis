@@ -26,14 +26,22 @@ This document provides a step-by-step guide for setting up a Conda environment f
 
 1. Install specific versions of the required packages to ensure compatibility:
    ```bash
-   conda install numpy=1.19.5
-   conda install tensorflow=2.4.1
-   conda install pandas=1.2.3
-   conda install -c conda-forge opencv
-   conda install scikit-learn
-   conda install pytorch torchvision torchaudio -c pytorch
-   conda install sqlite
-   conda install -c conda-forge ffmpeg
+ # Create a new conda environment named 'myenv'
+conda create -n myenv
+
+# Activate the new environment
+conda activate myenv
+
+# Install specific package versions
+conda install numpy=1.18.5
+conda install pandas=1.2.5
+conda install opencv=4.0.1
+conda install tensorflow=2.3.0
+conda install scikit-learn=1.2.2
+conda install pytorch=2.3.0 -c pytorch
+conda install sqlite=3.45.3
+conda install ffmpeg=5.1.2 -c conda-forge
+
    ```
 
 ## Step 4: Configure VSCode to Use Conda Environment
