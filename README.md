@@ -1,15 +1,6 @@
 # video_analysis
-first md docu
 
-working with anaconda to see the benfetis for ml etc
 
-setup:
-load environment as in /setup
-test with env_check.py script
-
-Sure, here is the complete documentation as one coherent Markdown file:
-
-```markdown
 # Conda Environment Setup for Video Analysis Project
 
 This document provides a step-by-step guide for setting up a Conda environment for your video analysis project. It includes installing necessary libraries, troubleshooting, and verification steps.
