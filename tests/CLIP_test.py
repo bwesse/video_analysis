@@ -9,7 +9,7 @@ model, preprocess = clip.load("ViT-B/32", device=device)
 
 # Prepare the image and text
 # Use forward slashes or double backslashes for the path
-image_path = os.path.join("C:/Users/benwe/Desktop/desktop/Uni/S4/videoAnalysis/tests/testimage.png")
+image_path = os.path.join("testimage.png")
 image = preprocess(Image.open(image_path)).unsqueeze(0).to(device)
 text = clip.tokenize(["a dog", "banana", "tomato", "women", "chair"]).to(device)
 
