@@ -1,6 +1,7 @@
 #my own ignores
 # Ignore processed data
 data/
+tests/output_frames
 
 
 # Byte-compiled / optimized / DLL files
