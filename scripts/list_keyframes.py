@@ -2,7 +2,7 @@ import sqlite3
 import os
 
 def list_keyframes():
-    db_path = 'C:/Users/benwe/Desktop/desktop/Uni/S4/videoAnalysis/video_analysis.db'
+    db_path = '../video_analysis.db'
     if not os.path.exists(db_path):
         print(f"Database not found at {db_path}")
         return

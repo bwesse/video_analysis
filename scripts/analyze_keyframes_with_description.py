@@ -5,7 +5,7 @@ import os
 import sqlite3
 
 def get_video_description(video_id):
-    db_path = 'C:/Users/benwe/Desktop/desktop/Uni/S4/videoAnalysis/video_analysis.db'
+    db_path = '../video_analysis.db'
     if not os.path.exists(db_path):
         print(f"Database not found at {db_path}")
         return None
@@ -76,7 +76,7 @@ def analyze_keyframes_with_description(video_id, keyframes_dir):
     return analysis_results
 
 def process_specific_keyframes(video_id):
-    keyframes_dir = 'C:/Users/benwe/Desktop/desktop/Uni/S4/videoAnalysis/data/keyframes/'
+    keyframes_dir = '../data/keyframes/'
     analysis_results = analyze_keyframes_with_description(video_id, keyframes_dir)
     print(f"Analysis results for video ID {video_id}: {analysis_results}")
 

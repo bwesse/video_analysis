@@ -28,8 +28,9 @@ def analyze_keyframes(video_id, keyframes_dir):
     return analysis_results
 
 def process_all_keyframes():
-    keyframes_dir = 'C:/Users/benwe/Desktop/desktop/Uni/S4/videoAnalysis/data/keyframes/'
-    db_path = 'C:/Users/benwe/Desktop/desktop/Uni/S4/videoAnalysis/video_analysis.db'
+    keyframes_dir = '../data/keyframes/'
+    #keyframes_dir = '../data/keyframes/'
+    db_path = '../video_analysis.db'
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     cursor.execute('SELECT id FROM Videos')

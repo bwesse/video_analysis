@@ -2,7 +2,7 @@ import sqlite3
 import numpy as np
 
 def verify_keyframe_analysis(video_id):
-    db_path = 'C:/Users/benwe/Desktop/desktop/Uni/S4/videoAnalysis/video_analysis.db'
+    db_path = '../video_analysis.db'
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     

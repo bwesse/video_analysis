@@ -8,7 +8,7 @@ from scripts.analyze_keyframes_with_description import analyze_keyframes_with_de
 import sqlite3
 
 def create_database():
-    db_path = 'C:/Users/benwe/Desktop/desktop/Uni/S4/videoAnalysis/video_analysis.db'
+    db_path = '../video_analysis.db'
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     cursor.execute('''CREATE TABLE IF NOT EXISTS Videos (
@@ -26,7 +26,7 @@ def create_database():
     conn.close()
 
 def store_analysis_results(video_id, keyframes_dir, analysis_results):
-    db_path = 'C:/Users/benwe/Desktop/desktop/Uni/S4/videoAnalysis/video_analysis.db'
+    db_path = '../video_analysis.db'
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     
@@ -45,6 +45,6 @@ def store_analysis_results(video_id, keyframes_dir, analysis_results):
 
 if __name__ == "__main__":
     video_id = 3  # Ensure this video ID exists in your Videos table
-    keyframes_dir = 'C:/Users/benwe/Desktop/desktop/Uni/S4/videoAnalysis/data/keyframes/'
+    keyframes_dir = '../data/keyframes/'
     analysis_results = analyze_keyframes_with_description(video_id, keyframes_dir)
     store_analysis_results(video_id, keyframes_dir, analysis_results)

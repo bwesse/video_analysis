@@ -1,7 +1,7 @@
 import sqlite3
 
 def verify_descriptions():
-    db_path = 'C:/Users/benwe/Desktop/desktop/Uni/S4/videoAnalysis/video_analysis.db'
+    db_path = '../video_analysis.db'
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     

@@ -21,6 +21,7 @@ def process_video_in_batches(video_path, batch_size=100):
     
     model = TransNetV2()
     state_dict = torch.load("C:/Users/benwe/Desktop/desktop/Uni/S4/videoAnalysis/TransNetV2/inference-pytorch/transnetv2-pytorch-weights.pth")
+    #state_dict = torch.load("C:/Users/benwe/Desktop/desktop/Uni/S4/videoAnalysis/TransNetV2/inference-pytorch/transnetv2-pytorch-weights.pth")
     model.load_state_dict(state_dict)
     model.eval().cuda()
     
