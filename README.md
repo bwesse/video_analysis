@@ -2,60 +2,129 @@
 
 # Video Analysis Project
 
-## Overview
-This project focuses on content-based video retrieval using a subset of the V3C-1 dataset. It includes keyframe extraction, content analysis, and an interactive search interface via a Streamlit GUI.
+By Simon Puchas, Tim Schumann & Ben Wesse
+
+
+## Project Overview
+
+The Video Analysis Project (VP) is a comprehensive system designed to allow users to search for video content from a subset of the V3C-1 dataset using text queries, short keyframes, or entire videos. This project leverages advanced machine learning models to extract and analyze keyframes from videos, generate descriptive metadata, and match these descriptions against a pre-built database to find the best results. The results are then displayed in a user-friendly web interface built with Streamlit.
+
+## Information Flow
+
+### User Input
+
+1. **Text Query**: Users can input a text query directly into the search bar.
+2. **Keyframe Query**: Users can upload a short keyframe.
+3. **Video Query**: Users can upload a full video, from which keyframes will be extracted.
+
+### Keyframe Extraction
+
+For video queries, the system uses **TransNetV2** to detect and extract keyframes. This ensures that only the most relevant frames are analyzed, optimizing performance and accuracy.
+
+### Keyframe Analysis
+
+Once keyframes are extracted, they are analyzed using the **CLIP (Contrastive Language–Image Pretraining)** model. CLIP generates descriptive metadata for each keyframe, which is then used to match against the existing database.
+
+### Database Comparison
+
+The system utilizes a pre-built SQLite database containing descriptions of all videos previously processed as well as the embedding for each keyframe. The users text input or generated metadata from the user's keyframes is compared against this database to find the best matching videos.
+
+### Result Display
+
+The best matching results are displayed to the user through a **Streamlit** front-end. Streamlit is chosen for its simplicity and easy integration with Python-based tools, allowing for rapid development and deployment.
+
+<div style="page-break-after: always;"></div>
+
+
+## Tools Employed
+
+### TransNetV2
+- **Role**: Keyframe extraction from uploaded videos.
+- **Purpose**: Efficiently detects scene boundaries to select the most relevant frames for analysis.
+
+### CLIP
+- **Role**: Keyframe analysis and embedding generation.
+- **Purpose**: Converts images and text into high-dimensional embeddings in a shared semantic space. This allows for effective comparison between keyframes and text-based queries, enabling the system to find the most relevant keyframe matches from the database.
+
+### SQLite
+- **Role**: Storage and retrieval of video metadata.
+- **Purpose**: A lightweight database solution to store and efficiently query video descriptions and metadata.
+
+### Streamlit
+- **Role**: Front-end web interface.
+- **Purpose**: Provides an interactive and user-friendly platform for displaying search results.
+
+### Python
+- **Role**: Core programming language.
+- **Purpose**: All scripts and applications are developed in Python, leveraging its extensive libraries for machine learning and web development.
 
 ## Directory Structure
-```
-video_analysis/
-│
-├── data/
-│   ├── V3C100/
-│   └── processed/
-│       ├── keyframes/
-│       └── transcoded/
-├── models/
-│   ├── pretrained/
-│   └── custom/
-├── notebooks/
-├── scripts/
-│   ├── analyze_keyframe_per_id.py
-│   ├── analyze_keyframes_with_description.py
-│   ├── analyze_keyframes.py
-│   ├── check_database_connection.py
-│   ├── create_database.py
-│   ├── detect_shot_boundaries.py
-│   ├── insert_sample_data.py
-│   ├── list_keyframes.py
-│   ├── list_video_ids.py
-│   ├── store_analysis_results.py
-│   ├── store_video_metadata.py
-│   ├── transcode_video.py
-│   ├── verify_descriptions.py
-│   ├── verify_keyframe_analysis.py
-│   ├── verify_video_id.py
-│   └── __init__.py
-├── setup/
-│   ├── env_check.py
-│   ├── environment.yml
-│   └── pytorch_cuda_check.py
-├── src/
-│   ├── backend/
-│   │   ├── database.py
-│   │   └── 
-│   ├── frontend/
-│   │   ├── gui_streamlit ... .py
-│   │   └── 
-│   └── utils/
-│       └── 
-├── tests/
-│   ├── test_extract_keyframes.py
-│   └── test_analyze_content.py
-├── .gitignore
-├── README.md
-├── requirements.txt
-└── environment.yml
-```
+
+- **data/**: Contains raw and processed video data.
+  - **V3C100/**: Raw video dataset.
+  - **processed/**: Processed video data including keyframes and transcoded videos.
+
+- **models/**: Stores pretrained and custom machine learning models.
+  - **pretrained/**: Pretrained models like TransNetV2 and CLIP.
+  - **custom/**: Custom models developed for specific project needs.
+
+- **notebooks/**: Jupyter notebooks for exploratory data analysis and prototyping.
+
+- **scripts/**: Python scripts for various tasks including video processing, database management, and analysis.
+  - **analyze_keyframe_per_id.py**: Analyze keyframes for a specific video ID.
+  - **analyze_keyframes_with_description.py**: Analyze keyframes and generate descriptions.
+  - **analyze_keyframes.py**: General keyframe analysis.
+  - **check_database_connection.py**: Ensure database connection is established.
+  - **create_database.py**: Script to create the SQLite database.
+  - **detect_shot_boundaries.py**: Detect shot boundaries in videos.
+  - **insert_sample_data.py**: Insert sample data into the database.
+  - **list_keyframes.py**: List all keyframes in the database.
+  - **list_video_ids.py**: List all video IDs in the database.
+  - **store_analysis_results.py**: Store analysis results in the database.
+  - **store_video_metadata.py**: Store video metadata in the database.
+  - **transcode_video.py**: Transcode videos to a suitable format for processing.
+  - **verify_descriptions.py**: Verify the accuracy of keyframe descriptions.
+  - **verify_keyframe_analysis.py**: Verify the keyframe analysis process.
+  - **verify_video_id.py**: Verify the video ID against the database.
+  - **__init__.py**: Initialization script.
+
+- **setup/**: Environment setup scripts.
+  - **env_check.py**: Check environment configurations.
+  - **environment.yml**: Environment configuration file.
+  - **pytorch_cuda_check.py**: Check PyTorch and CUDA setup.
+
+- **src/**: Source code for the project.
+  - **backend/**: Backend logic including database interactions.
+    - **database.py**: Database interaction logic.
+  - **frontend/**: Frontend code for the Streamlit application.
+    - **gui_streamlit.py**: Streamlit GUI implementation.
+  - **utils/**: Utility functions and helpers.
+
+- **tests/**: Unit and integration tests.
+  - **test_extract_keyframes.py**: Test keyframe extraction functionality.
+  - **test_analyze_content.py**: Test content analysis functionality.
+
+- **.gitignore**: Git ignore file.
+- **README.md**: Project README file.
+- **requirements.txt**: Python dependencies.
+- **environment.yml**: Environment configuration file.
+
+## Conclusion
+
+The Video Analysis Project integrates state-of-the-art machine learning models with a streamlined web interface to provide users with a powerful tool for video content search and analysis. The project leverages a combination of TransNetV2, CLIP, SQLite, and Streamlit, all orchestrated through Python scripts, to deliver an efficient and user-friendly experience.
+
+
+
+<div style="page-break-after: always;"></div>
+
+
+## Frontendmockup
+<img src="doc\screenmockup.png" alt="screenmockup" style="width: 160mm; height: 250mm; margin: auto; display: block;">
+
+
+
+
+
 
 ## Setup Process
 
@@ -114,9 +183,3 @@ You can run tests to ensure the functionality of the components as well as see t
 ```sh
 pytest tests/
 ```
-
-
-# Content-Based Video Retrieval System
-
-## Project Overview
-This project focuses on developing a content-based video retrieval system using a subset of the V3C-1 dataset. The system is designed to find small video segments of interest based on Known-Item Search (KIS) queries, which is a use case of the Video Browser Showdown (VBS).
