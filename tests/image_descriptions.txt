@@ -1,0 +1,50 @@
+frame_1041.jpg: a black and white photo of a person in a room
+frame_1110.jpg: a black and white photo of a person standing in a doorway
+frame_1217.jpg: a black and white photo of a person in a room
+frame_1497.jpg: a man standing in a dark room with a light coming from the ceiling
+frame_1564.jpg: a black and white photo of a man in a suit
+frame_1617.jpg: a black and white photo of a man in a suit
+frame_1682.jpg: a black and white photo of a man in a suit
+frame_1725.jpg: a black and white photo of a person in a room
+frame_2170.jpg: a man in a suit and tie standing in front of a window
+frame_2212.jpg: a black and white photo of a door
+frame_2279.jpg: a man in a suit standing in front of a window
+frame_2338.jpg: a black and white photo of a door
+frame_2424.jpg: a black and white photo of a person in the dark
+frame_2572.jpg: a black and white photo of a window
+frame_2669.jpg: a black and white photo of a hallway
+frame_2754.jpg: a black and white photo of a person walking through a dark forest
+frame_2826.jpg: a black and white photo of a man in a suit
+frame_3236.jpg: a man in a suit and tie standing in front of a stage
+frame_3341.jpg: a black and white photo of a person in the dark
+frame_358.jpg: a black and white photo of a person in the dark
+frame_4011.jpg: a black and white photo of a man in a suit
+frame_4083.jpg: a black and white photo of a person in the dark
+frame_4144.jpg: a black and white photo of a person walking down a hallway
+frame_4204.jpg: a black and white photo of a building
+frame_4299.jpg: a black and white photo of a woman in a dress
+frame_433.jpg: the moon is seen from space
+frame_434.jpg: the moon is seen in the sky above the earth
+frame_4387.jpg: a black and white photo of a person in the dark
+frame_4413.jpg: a man in a suit and tie standing in front of a window
+frame_4471.jpg: a black and white photo of a person walking down a dark hallway
+frame_4579.jpg: a man in a suit and tie standing in front of a window
+frame_4639.jpg: a black and white photo of a man in a suit
+frame_4832.jpg: a black and white photo of a man in a suit
+frame_4896.jpg: a black and white photo of a person in a room
+frame_495.jpg: a black and white photo of a person in the dark
+frame_5115.jpg: a man standing in a dark room with a light coming from the ceiling
+frame_5252.jpg: a black and white photo of a person in a room
+frame_5444.jpg: a man in a suit and tie standing in front of a window
+frame_553.jpg: a black and white photo of a man in a suit
+frame_5557.jpg: a black and white photo of a man with a beard
+frame_5658.jpg: a man in a suit and tie standing in front of a window
+frame_5677.jpg: a black and white photo of a person in the dark
+frame_5770.jpg: a black and white photo of a man in a suit
+frame_5871.jpg: a black cat sitting on top of a table
+frame_6012.jpg: a man in a suit standing in front of a window
+frame_6070.jpg: a black and white photo of a woman's face
+frame_6256.jpg: a man in a suit and tie is looking at the camera
+frame_646.jpg: a black and white photo of a person with a white face
+frame_809.jpg: a black and white photo of a window
+frame_972.jpg: a man in a suit standing in front of a wall

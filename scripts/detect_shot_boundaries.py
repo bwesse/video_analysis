@@ -63,7 +63,11 @@ def process_video_in_batches(video_path, batch_size=100):
     return scene_changes
 
 def process_all_videos():
+    #db_path = 'C:/Users/benwe/Desktop/desktop/Uni/S4/videoAnalysis/video_analysis.db'
     db_path = 'C:/Users/benwe/Desktop/desktop/Uni/S4/videoAnalysis/video_analysis.db'
+
+    
+
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     cursor.execute('SELECT id, path FROM Videos')

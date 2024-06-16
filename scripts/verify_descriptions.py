@@ -1,7 +1,8 @@
 import sqlite3
 
 def verify_descriptions():
-    db_path = '../video_analysis.db'
+    #db_path = '../video_analysis.db'
+    db_path = '../src/backend/database_2.db'
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     

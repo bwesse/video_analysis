@@ -44,7 +44,7 @@ def store_analysis_results(video_id, keyframes_dir, analysis_results):
     print("Analysis results stored.")
 
 if __name__ == "__main__":
-    video_id = 3  # Ensure this video ID exists in your Videos table
+    video_id = 1  # Ensure this video ID exists in your Videos table
     keyframes_dir = '../data/keyframes/'
     analysis_results = analyze_keyframes_with_description(video_id, keyframes_dir)
     store_analysis_results(video_id, keyframes_dir, analysis_results)
