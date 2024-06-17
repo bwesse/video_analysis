@@ -1,4 +1,4 @@
-name: video_analysis_env #mine is named differntly cuz im stupi ("imageAnalysis")
+#name: video_analysis_env #mine is named differntly cuz im stupi ("imageAnalysis")
 name: video_analysis_env
 channels:
   - defaults
