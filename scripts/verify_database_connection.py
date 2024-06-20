@@ -2,7 +2,7 @@ import sqlite3
 import os
 
 def check_database_connection():
-    db_path = '../video_analysis.db'
+    db_path = '../src/backend/database_2.db'
     if os.path.exists(db_path):
         print(f"Database found at {db_path}")
     else:
