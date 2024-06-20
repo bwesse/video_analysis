@@ -1,0 +1,22 @@
+get the image embedding from clip and store it to the database.
+clip can create embeddings for images and fo text. 
+figure out how to save the em to the database - one the img embedding itself, one for the description and one concatenated versioon. 
+whats the best way to store this embedding to then be able to do similaririty search
+probably a vector and then do cosine siilarity -> see similarity_utils
+
+get the saving to work on a daatabse with 5 images see smalltestdb
+
+implement the search query in the gui. 
+
+take the input image let it run through the steps and compare its embedding ot the database. 
+
+
+possible addition
+use yolo to label objects of interest in each image to enable wcategoriy filtering. 
+
+connect to server
+
+
+pip install git+https://github.com/openai/CLIP.git
+pip install torch torchvision
+pip install numpy

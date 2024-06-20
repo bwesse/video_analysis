@@ -4,7 +4,7 @@ import os
 # Add the parent directory to the sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from scripts.analyze_keyframes_with_description import analyze_keyframes_with_description
+from scripts.not_important.analyze_keyframes_with_description import analyze_keyframes_with_description
 import sqlite3
 
 def create_database():

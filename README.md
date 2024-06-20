@@ -58,6 +58,7 @@ The best matching results are displayed to the user through a **Streamlit** fron
 - **Role**: Core programming language.
 - **Purpose**: All scripts and applications are developed in Python, leveraging its extensive libraries for machine learning and web development.
 
+
 ## Directory Structure
 
 - **data/**: Contains raw and processed video data.
