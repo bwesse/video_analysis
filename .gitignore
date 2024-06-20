@@ -98,7 +98,7 @@ Thumbs.db
 
 
 # Ignore image files
-*.jpg
+#*.jpg
 *.jpeg
 *.png
 *.gif
