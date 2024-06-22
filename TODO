@@ -20,3 +20,9 @@ connect to server
 pip install git+https://github.com/openai/CLIP.git
 pip install torch torchvision
 pip install numpy
+
+# look here
+look at these links, maybe it helps 
+https://medium.com/aimonks/clip-vs-dinov2-in-image-similarity-6fa5aa7ed8c6#:~:text=Image%20similarity%20with%20CLIP,1%20and%20CLIP%20part%202.
+https://medium.com/@jeremy-k/unlocking-openai-clip-part-1-intro-to-zero-shot-classification-f81194f4dff7
+https://medium.com/@jeremy-k/unlocking-openai-clip-part-2-image-similarity-bf0224ab5bb0
