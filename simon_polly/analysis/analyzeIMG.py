@@ -9,7 +9,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 model, preprocess = clip.load("ViT-B/32", device=device)
 
 # Step 2: Database connection
-conn = sqlite3.connect('simon_polly\data1\SmallDatabase.db')
+conn = sqlite3.connect('simon_polly\data1\database_2.db')
 c = conn.cursor()
 # Ensure table exists
 #c.execute('''CREATE TABLE IF NOT EXISTS image_embedding (id INTEGER PRIMARY KEY, embedding BLOB)''')
@@ -17,7 +17,7 @@ c = conn.cursor()
 # Assuming there's a table named 'images' with columns 'id' and 'image_path'
 def fetch_and_process_images():
     # Fetch all image paths from the database
-    c.execute("SELECT id, path FROM keyframe_images")
+    c.execute("SELECT id, path FROM Keyframes")
     images = c.fetchall()
 
     for image_id, image_path in images:
@@ -28,7 +28,7 @@ def fetch_and_process_images():
                 image_features = image_features.cpu().numpy()
 
             # Store embeddings
-            c.execute("UPDATE keyframe_images SET image_embedding = ? WHERE id = ?", (image_features.tobytes(), image_id))
+            c.execute("UPDATE Keyframes SET image_embedding = ? WHERE id = ?", (image_features.tobytes(), image_id))
         except Exception as e:
             print(f"Error processing image {image_path}: {e}")
 
