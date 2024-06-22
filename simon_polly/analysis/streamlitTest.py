@@ -5,7 +5,7 @@ import os
 import numpy as np
 import torch
 import clip
-from SimilaritySearch import cosine_similarity, process_uploaded_image, process_text_input, find_image_similarity, find_text_similarity, get_all_keyframes
+from SimilaritySearch import    cosine_similarity, find_image_similarity, get_all_keyframes, process_uploaded_image, process_text_input, find_text_similarity, load_clip_model
 
 # Ensure the script can find the database file
 db_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'simon_polly\data1\database_2.db'))
@@ -101,7 +101,7 @@ if uploaded_file is not None:
     for vid, idx, sim in similar_keyframes:
         frame_path = get_keyframe_image(vid, idx)
         if os.path.exists(frame_path):
-            st.image(frame_path, caption=f"ID: {vid}, Frame Index: {idx}, Similarity: {sim[0]:.4f}")
+            st.image(frame_path, caption=f"ID: {vid}, Frame Index: {idx}, Similarity: {sim:.4f}")
         else:
             st.write(f"Keyframe image {idx} for id {vid} not found at path: {frame_path}")
 
@@ -119,7 +119,7 @@ if text_input:
     for vid, idx, sim in similar_keyframes:
         frame_path = get_keyframe_image(vid, idx)
         if os.path.exists(frame_path):
-            st.image(frame_path, caption=f"ID: {vid}, Frame Index: {idx}, Similarity: {sim[0]:.4f}")
+            st.image(frame_path, caption=f"ID: {vid}, Frame Index: {idx}, Similarity: {sim:.4f}")
         else:
             st.write(f"Keyframe image {idx} for id {vid} not found at path: {frame_path}")
 

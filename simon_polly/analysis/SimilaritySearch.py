@@ -5,6 +5,7 @@ import sqlite3
 import torch
 import clip
 from PIL import Image
+import torch.nn as nn
 
 def cosine_similarity(v1, v2):
     """
@@ -17,22 +18,32 @@ def cosine_similarity(v1, v2):
     Returns:
     float: Cosine similarity between v1 and v2.
     """
-    v11 = np.array(v1)
-    v22 = np.array(v2)
+    v11 = np.array(v1).flatten()
+    v22 = np.array(v2).flatten()
 
-    # Check dimensions and pad the shorter vector with zeros
+    # padding for same dimension
+    
     if v11.size > v22.size:
         v22 = np.pad(v22, (0, v11.size - v22.size), 'constant')
     elif v22.size > v11.size:
         v11 = np.pad(v11, (0, v22.size - v11.size), 'constant')
-        
     
-    dot_product = np.dot(v11, v22)
+    # truncate for same dimension
+    '''
+    min_size = min(v11.size, v22.size)
+    v11 = v11[:min_size]
+    v22 = v22[:min_size]
+    '''
+    
+    #dot_product = np.dot(v11, v22)
     norm_v1 = np.linalg.norm(v11)
     norm_v2 = np.linalg.norm(v22)
     if norm_v1 == 0 or norm_v2 == 0:
         return 0.0
-    return dot_product / (norm_v1 * norm_v2)
+    cos = nn.CosineSimilarity(dim=0)
+    similarity = cos(v11 if isinstance(v11, torch.Tensor) else torch.tensor(v11), 
+                 v22 if isinstance(v22, torch.Tensor) else torch.tensor(v22))
+    return (similarity.item() + 1) / 2 # Normalize to [0, 1] range
 
 def find_image_similarity(target_vector1, all_keyframes, top_n=5):
     """
@@ -78,6 +89,7 @@ def find_text_similarity(target_vector2, all_keyframes, top_n=5):
         if text_embedding:
             try:
                 vector = np.frombuffer(text_embedding, dtype=np.float32)
+                #vector = torch.from_numpy(text_embedding)
                 similarity = cosine_similarity(target_vector2, vector)
                 similarities.append((id, frame_index, similarity))
             except Exception as e:
@@ -104,7 +116,8 @@ def process_uploaded_image(uploaded_file, model, preprocess, device):
     image = Image.open(uploaded_file).convert("RGB")
     image_tensor = preprocess(image).unsqueeze(0).to(device)
     with torch.no_grad():
-        image_features = model.encode_image(image_tensor).cpu().numpy()
+        image_features = model.encode_image(image_tensor)
+        image_features = image_features.cpu().numpy()
     return image_features
 
 def process_text_input(text_input, model, device):
@@ -122,7 +135,8 @@ def process_text_input(text_input, model, device):
 
     text_tokens = clip.tokenize([text_input]).to(device)
     with torch.no_grad():
-        text_features = model.encode_text(text_tokens).cpu().numpy()
+        text_features = model.encode_text(text_tokens)
+        text_features = text_features.cpu().numpy()
     return text_features
 
 def load_clip_model():
