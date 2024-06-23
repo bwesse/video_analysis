@@ -28,16 +28,21 @@ def fetch_and_process_images():
             with torch.no_grad():
                 image_features = model.encode_image(image)
                 image_features = image_features.cpu().numpy()
+                #checking for dimensions
+                #print(f"Embedding for {image_id} has shape: {image_features.shape}")
 
             # Process text
             text = clip.tokenize([text_description]).to(device)
             with torch.no_grad():
                 text_features = model.encode_text(text)
                 text_features = text_features.cpu().numpy()
+                #checking for dimensions
+                #print(f"Embedding for {image_id} has shape: {text_features.shape}")
 
             # Store embeddings
             c.execute("UPDATE Keyframes SET image_embedding = ?, text_embedding = ? WHERE id = ?", 
                       (image_features.tobytes(), text_features.tobytes(), image_id))
+            #print(f"Embeddings stored for image {image_id} has shape: {len(image_features.tobytes())}")
         except Exception as e:
             print(f"Error processing record {image_id}: {e}")
 

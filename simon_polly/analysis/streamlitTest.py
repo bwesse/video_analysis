@@ -95,7 +95,7 @@ if uploaded_file is not None:
     model, preprocess = clip.load("ViT-B/32", device=device)
     target_vector1 = process_uploaded_image(uploaded_file, model, preprocess, device)
     all_keyframes = get_all_keyframes(db_path)
-    similar_keyframes = find_image_similarity(target_vector1, all_keyframes)
+    similar_keyframes = find_image_similarity(target_vector1, all_keyframes, device)
 
     st.write("Top similar keyframes:")
     for vid, idx, sim in similar_keyframes:
@@ -113,7 +113,7 @@ if text_input:
     model, preprocess = clip.load("ViT-B/32", device=device)
     target_vector2 = process_text_input(text_input, model, device)
     all_keyframes = get_all_keyframes(db_path)
-    similar_keyframes = find_text_similarity(target_vector2, all_keyframes, top_n=5)
+    similar_keyframes = find_text_similarity(target_vector2, all_keyframes, device, top_n=5)
 
     st.write("Top similar keyframes:")
     for vid, idx, sim in similar_keyframes:

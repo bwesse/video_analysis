@@ -18,6 +18,7 @@ def cosine_similarity(v1, v2):
     Returns:
     float: Cosine similarity between v1 and v2.
     """
+    '''
     v11 = np.array(v1).flatten()
     v22 = np.array(v2).flatten()
 
@@ -27,7 +28,7 @@ def cosine_similarity(v1, v2):
         v22 = np.pad(v22, (0, v11.size - v22.size), 'constant')
     elif v22.size > v11.size:
         v11 = np.pad(v11, (0, v22.size - v11.size), 'constant')
-    
+    '''
     # truncate for same dimension
     '''
     min_size = min(v11.size, v22.size)
@@ -36,16 +37,15 @@ def cosine_similarity(v1, v2):
     '''
     
     #dot_product = np.dot(v11, v22)
-    norm_v1 = np.linalg.norm(v11)
-    norm_v2 = np.linalg.norm(v22)
-    if norm_v1 == 0 or norm_v2 == 0:
-        return 0.0
-    cos = nn.CosineSimilarity(dim=0)
-    similarity = cos(v11 if isinstance(v11, torch.Tensor) else torch.tensor(v11), 
-                 v22 if isinstance(v22, torch.Tensor) else torch.tensor(v22))
-    return (similarity.item() + 1) / 2 # Normalize to [0, 1] range
+    #norm_v1 = np.linalg.norm(v1)
+    #norm_v2 = np.linalg.norm(v2)
+    #if norm_v1 == 0 or norm_v2 == 0:
+        #return 0.0
+    cos = nn.CosineSimilarity(dim=1)
+    similarity = cos(v1, v2).item()
+    return (similarity + 1) / 2 # Normalize to [0, 1] range
 
-def find_image_similarity(target_vector1, all_keyframes, top_n=5):
+def find_image_similarity(target_vector1, all_keyframes, device, top_n=5):
     """
     Find the top N similar keyframes to the target vector using cosine similarity.
     
@@ -61,7 +61,7 @@ def find_image_similarity(target_vector1, all_keyframes, top_n=5):
     for video_id, frame_index, image_embedding, _ in all_keyframes:
         if image_embedding:
             try:
-                vector = np.frombuffer(image_embedding, dtype=np.float32)
+                vector = torch.tensor(np.frombuffer(image_embedding, dtype=np.float16)).unsqueeze(0).to(device)
                 similarity = cosine_similarity(target_vector1, vector)
                 similarities.append((video_id, frame_index, similarity))
             except Exception as e:
@@ -71,7 +71,7 @@ def find_image_similarity(target_vector1, all_keyframes, top_n=5):
     similarities.sort(key=lambda x: x[2], reverse=True)
     return similarities[:top_n]
 
-def find_text_similarity(target_vector2, all_keyframes, top_n=5):
+def find_text_similarity(target_vector2, all_keyframes, device, top_n=5):
     """
     Find the top N similar keyframes to the target vector using cosine similarity.
     
@@ -88,7 +88,7 @@ def find_text_similarity(target_vector2, all_keyframes, top_n=5):
     for id, frame_index, text_embedding, _ in all_keyframes:
         if text_embedding:
             try:
-                vector = np.frombuffer(text_embedding, dtype=np.float32)
+                vector = torch.tensor(np.frombuffer(text_embedding, dtype=np.float16)).unsqueeze(0).to(device)
                 #vector = torch.from_numpy(text_embedding)
                 similarity = cosine_similarity(target_vector2, vector)
                 similarities.append((id, frame_index, similarity))
@@ -117,7 +117,7 @@ def process_uploaded_image(uploaded_file, model, preprocess, device):
     image_tensor = preprocess(image).unsqueeze(0).to(device)
     with torch.no_grad():
         image_features = model.encode_image(image_tensor)
-        image_features = image_features.cpu().numpy()
+        #image_features = image_features.cpu()#.numpy()
     return image_features
 
 def process_text_input(text_input, model, device):
@@ -136,7 +136,7 @@ def process_text_input(text_input, model, device):
     text_tokens = clip.tokenize([text_input]).to(device)
     with torch.no_grad():
         text_features = model.encode_text(text_tokens)
-        text_features = text_features.cpu().numpy()
+        #text_features = text_features.cpu()#.numpy()
     return text_features
 
 def load_clip_model():
