@@ -47,8 +47,8 @@ def get_keyframes(video_id):
     conn.close()
     return keyframes
 
-def get_keyframe_image(id, frame_index):
-    keyframe_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..','simon_polly', 'data1', 'downloaded_images', f'{id}_{frame_index}.jpg'))
+def get_keyframe_image(video_id, frame_index):
+    keyframe_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..','simon_polly', 'data1', 'downloaded_images', f'{video_id}_{frame_index}.jpg'))
     return keyframe_path
 
 st.title("Video Search and Analysis System")
@@ -70,7 +70,7 @@ if query:
                 for frame_index, analysis_results in keyframe_results:
                     frame_path = get_keyframe_image(video_id, frame_index)
                     if os.path.exists(frame_path):
-                        analysis_results = np.frombuffer(analysis_results, dtype=np.float32)
+                        analysis_results = np.frombuffer(analysis_results, dtype=np.float16)
                         st.image(frame_path, caption=f"Keyframe {frame_index} - Analysis: {analysis_results}")
                     else:
                         st.write(f"Keyframe image {frame_index} not found at path: {frame_path}")
@@ -103,7 +103,7 @@ if uploaded_file is not None:
         if os.path.exists(frame_path):
             st.image(frame_path, caption=f"ID: {vid}, Frame Index: {idx}, Similarity: {sim:.4f}")
         else:
-            st.write(f"Keyframe image {idx} for id {vid} not found at path: {frame_path}")
+            st.write(f"Keyframe image {idx} for video_id {vid} not found at path: {frame_path}")
 
 st.title("Search Keyframes by Text Description")
 
@@ -121,7 +121,7 @@ if text_input:
         if os.path.exists(frame_path):
             st.image(frame_path, caption=f"ID: {vid}, Frame Index: {idx}, Similarity: {sim:.4f}")
         else:
-            st.write(f"Keyframe image {idx} for id {vid} not found at path: {frame_path}")
+            st.write(f"Keyframe image {idx} for video_id {vid} not found at path: {frame_path}")
 
 st.write("""
 Welcome to our **Video Search and Analysis System**. This platform allows you to search for video content based on descriptions, view keyframes, and find similar keyframes using state-of-the-art image analysis. Our system is designed to be user-friendly, professional, and minimalistic, ensuring you can efficiently find the content you need. Learn more about this project at [our GitHub](https://github.com/bwesse/VP.git).

@@ -18,23 +18,6 @@ def cosine_similarity(v1, v2):
     Returns:
     float: Cosine similarity between v1 and v2.
     """
-    '''
-    v11 = np.array(v1).flatten()
-    v22 = np.array(v2).flatten()
-
-    # padding for same dimension
-    
-    if v11.size > v22.size:
-        v22 = np.pad(v22, (0, v11.size - v22.size), 'constant')
-    elif v22.size > v11.size:
-        v11 = np.pad(v11, (0, v22.size - v11.size), 'constant')
-    '''
-    # truncate for same dimension
-    '''
-    min_size = min(v11.size, v22.size)
-    v11 = v11[:min_size]
-    v22 = v22[:min_size]
-    '''
     
     #dot_product = np.dot(v11, v22)
     #norm_v1 = np.linalg.norm(v1)
@@ -85,17 +68,17 @@ def find_text_similarity(target_vector2, all_keyframes, device, top_n=5):
     """
     
     similarities = []
-    for id, frame_index, text_embedding, _ in all_keyframes:
+    for video_id, frame_index, text_embedding, _ in all_keyframes:
         if text_embedding:
             try:
                 vector = torch.tensor(np.frombuffer(text_embedding, dtype=np.float16)).unsqueeze(0).to(device)
                 #vector = torch.from_numpy(text_embedding)
                 similarity = cosine_similarity(target_vector2, vector)
-                similarities.append((id, frame_index, similarity))
+                similarities.append((video_id, frame_index, similarity))
             except Exception as e:
-                print(f"Error processing keyframe {id}_{frame_index}: {e}")
+                print(f"Error processing keyframe {video_id}_{frame_index}: {e}")
         else:
-            print(f"Analysis results for keyframe {id}_{frame_index} are empty or None.")
+            print(f"Analysis results for keyframe {video_id}_{frame_index} are empty or None.")
     similarities.sort(key=lambda x: x[2], reverse=True)
     return similarities[:top_n]
 
@@ -164,7 +147,7 @@ def get_all_keyframes(db_path):
     
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
-    cursor.execute("SELECT id, frame_index, image_embedding, text_embedding FROM Keyframes")
+    cursor.execute("SELECT video_id, frame_index, image_embedding, text_embedding FROM Keyframes")
     keyframes = cursor.fetchall()
     conn.close()
     return keyframes
