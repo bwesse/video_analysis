@@ -4,12 +4,13 @@ from PIL import Image
 import io
 
 def create_database():
-    conn = sqlite3.connect('../src/backend/database_2.db')
+    conn = sqlite3.connect('simon_polly\data1\database_new.db')
     cursor = conn.cursor()
-    cursor.execute('''CREATE TABLE IF NOT EXISTS Videos (
-                      id INTEGER PRIMARY KEY,
-                      path TEXT,
-                      description TEXT)''')
+    
+    #cursor.execute('''CREATE TABLE IF NOT EXISTS Videos (
+                      #id INTEGER PRIMARY KEY,
+                      #path TEXT,
+                      #description TEXT)''')
     
     # Drop the Keyframes table if it exists
     cursor.execute('DROP TABLE IF EXISTS Keyframes')
@@ -22,13 +23,14 @@ def create_database():
                       image BLOB,
                       path TEXT,
                       description TEXT,
-                      analysis_results TEXT,
+                      image_embedding TEXT,
+                        text_embedding TEXT,
                       FOREIGN KEY(video_id) REFERENCES Videos(id))''')
     conn.commit()
     conn.close()
 
 def insert_keyframe(video_id, frame_index, image_path):
-    conn = sqlite3.connect('../src/backend/database_2.db')
+    conn = sqlite3.connect('simon_polly\data1\database_new.db')
     cursor = conn.cursor()
 
     # Open the image and resize it
@@ -61,7 +63,7 @@ if __name__ == "__main__":
     create_database()
     
     # Replace with your actual directory path containing keyframes
-    keyframe_directory = r'..\data\processed\keyframes'
+    keyframe_directory = r'simon_polly/data1/processed/keyframes'
     
     for filename in os.listdir(keyframe_directory):
         if filename.endswith('.jpg'):

@@ -9,7 +9,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 model, preprocess = clip.load("ViT-B/32", device=device)
 
 # Step 2: Database connection
-conn = sqlite3.connect('simon_polly\data1\database_2.db')
+conn = sqlite3.connect('simon_polly\data1\database_new.db')
 c = conn.cursor()
 # Ensure table exists
 #c.execute('''CREATE TABLE IF NOT EXISTS image_embedding (id INTEGER PRIMARY KEY, embedding BLOB)''')
@@ -42,6 +42,7 @@ def fetch_and_process_images():
             # Store embeddings
             c.execute("UPDATE Keyframes SET image_embedding = ?, text_embedding = ? WHERE id = ?", 
                       (image_features.tobytes(), text_features.tobytes(), image_id))
+            #checking for dimensions
             #print(f"Embeddings stored for image {image_id} has shape: {len(image_features.tobytes())}")
         except Exception as e:
             print(f"Error processing record {image_id}: {e}")

@@ -5,22 +5,23 @@ import torch
 from transformers import BlipProcessor, BlipForConditionalGeneration
 
 def create_database():
-    conn = sqlite3.connect('../src/backend/database_2.db')
+    conn = sqlite3.connect('simon_polly\data1\database_new.db')
     cursor = conn.cursor()
-    cursor.execute('''CREATE TABLE IF NOT EXISTS Videos (
-                      id INTEGER PRIMARY KEY,
-                      path TEXT,
-                      description TEXT)''')
-    cursor.execute('''CREATE TABLE IF NOT EXISTS Keyframes (
-                      id INTEGER PRIMARY KEY,
-                      video_id INTEGER,
-                      frame_index INTEGER,
-                      timestamp TEXT,
-                      image BLOB,
-                      path TEXT,
-                      description TEXT,
-                      analysis_results TEXT,
-                      FOREIGN KEY(video_id) REFERENCES Videos(id))''')
+    #cursor.execute('''CREATE TABLE IF NOT EXISTS Videos (
+    #                  id INTEGER PRIMARY KEY,
+    #                  path TEXT,
+    #                  description TEXT)''')
+    #cursor.execute('''CREATE TABLE IF NOT EXISTS Keyframes (
+    #                  id INTEGER PRIMARY KEY,
+    #                 video_id INTEGER,
+    #                  frame_index INTEGER,
+    #                  timestamp TEXT,
+    #                  image BLOB,
+    #                  path TEXT,
+    #                  description TEXT,
+    #                  image_embedding TEXT,
+    #                    text_embedding TEXT,
+    #                 FOREIGN KEY(video_id) REFERENCES Videos(id))''')
     conn.commit()
     conn.close()
 
@@ -38,7 +39,7 @@ def generate_image_description(image_path):
     return description
 
 def update_all_keyframe_descriptions():
-    conn = sqlite3.connect('../src/backend/database_2.db')
+    conn = sqlite3.connect('simon_polly\data1\database_new.db')
     cursor = conn.cursor()
 
     # Select all keyframes that do not have a description yet

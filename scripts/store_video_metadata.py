@@ -3,7 +3,7 @@ import sqlite3
 
 def create_database():
     #conn = sqlite3.connect('video_analysis.db')
-    conn = sqlite3.connect('../src/backend/database_2.db')
+    conn = sqlite3.connect('simon_polly\data1\database_new.db')
 
     cursor = conn.cursor()
     cursor.execute('''CREATE TABLE IF NOT EXISTS Videos (
@@ -21,7 +21,7 @@ def create_database():
     conn.close()
 
 def store_video_metadata(video_dir):
-    conn = sqlite3.connect('../src/backend/database_2.db')
+    conn = sqlite3.connect('simon_polly\data1\database_new.db')
     cursor = conn.cursor()
 
     print(f"Walking through directory: {video_dir}")
@@ -52,7 +52,7 @@ def store_video_metadata(video_dir):
     conn.close()
 
 if __name__ == "__main__":
-    video_dir = '../data/V3C1-100/'
+    video_dir = 'simon_polly\data1\V3C100'
     create_database()
     store_video_metadata(video_dir)
     print("Metadata storage complete.")

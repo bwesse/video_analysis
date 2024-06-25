@@ -8,7 +8,7 @@ import clip
 from SimilaritySearch import    cosine_similarity, find_image_similarity, get_all_keyframes, process_uploaded_image, process_text_input, find_text_similarity, load_clip_model
 
 # Ensure the script can find the database file
-db_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'simon_polly\data1\database_2.db'))
+db_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'simon_polly\data1\database_new.db'))
 
 def load_database():
     conn = sqlite3.connect(db_path)
@@ -48,7 +48,7 @@ def get_keyframes(video_id):
     return keyframes
 
 def get_keyframe_image(video_id, frame_index):
-    keyframe_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..','simon_polly', 'data1', 'downloaded_images', f'{video_id}_{frame_index}.jpg'))
+    keyframe_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..','simon_polly', 'data1', 'processed', 'keyframes', f'keyframe_{video_id}_{frame_index}.jpg'))
     return keyframe_path
 
 st.title("Video Search and Analysis System")
