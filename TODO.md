@@ -2,7 +2,9 @@
 
 1. connecting to server
 
-2. integrating a video replay
+2. integrating a video replay, or check if it actually works
+
+3. check for video_id labeling, as we have some keyframes with 2 different video_ids
 
 ### time until 30th july
 Create an evaluation of the performance for one of your content analysis methods (e.g., a
