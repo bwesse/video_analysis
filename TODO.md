@@ -2,9 +2,7 @@
 
 1. connecting to server
 
-2. integrating a video replay, or check if it actually works
-
-3. check for video_id labeling, as we have some keyframes with 2 different video_ids
+2. if we have time we could try a new labeling method as blib kinda sucks
 
 ### time until 30th july
 Create an evaluation of the performance for one of your content analysis methods (e.g., a
@@ -36,6 +34,9 @@ get the saving to work on a daatabse with 5 images see smalltestdb
 implement the search query in the gui. 
 
 take the input image let it run through the steps and compare its embedding ot the database. 
+
+
+integrating a video replay, or check if it actually works
 
 
 possible addition
