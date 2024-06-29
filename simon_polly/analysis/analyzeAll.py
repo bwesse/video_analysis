@@ -17,7 +17,7 @@ c = conn.cursor()
 # Assuming there's a table named 'images' with columns 'id' and 'image_path'
 def fetch_and_process_images():
     # Fetch all image paths and text descriptions from the database
-    c.execute("SELECT id, path, description FROM Keyframes")
+    c.execute("SELECT id, path, description2 FROM Keyframes")
     records = c.fetchall()
 
     for record in records:
@@ -40,7 +40,7 @@ def fetch_and_process_images():
                 #print(f"Embedding for {image_id} has shape: {text_features.shape}")
 
             # Store embeddings
-            c.execute("UPDATE Keyframes SET image_embedding = ?, text_embedding = ? WHERE id = ?", 
+            c.execute("UPDATE Keyframes SET image_embedding = ?, text_embedding2 = ? WHERE id = ?", 
                       (image_features.tobytes(), text_features.tobytes(), image_id))
             #checking for dimensions
             #print(f"Embeddings stored for image {image_id} has shape: {len(image_features.tobytes())}")
