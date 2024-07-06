@@ -15,3 +15,7 @@ But here is where I dont know what to do anymore. Like should we simply rewrite 
 Also even tho I did the setup as shown in the Java example, VS code doesnt recognize any of the APIblablabla functions and packages used. 
 
 ### Please do these steps and try to somehow get it done
+
+
+### additional info
+additional info can be found in the assignment sheet, but I doubt it will help. The given API doesnt really tell anything. 
