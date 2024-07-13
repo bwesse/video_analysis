@@ -1,5 +1,6 @@
 import requests
 
+# Login
 r = requests.post(
     "https://vbs.videobrowsing.org/api/v2/login",
     json={"username": "ivadl12", "password": "dcyaeAI5cflKtsg"},
@@ -10,6 +11,7 @@ print(f"Status Code: {r.status_code}, Content: {r.json()}")
 
 session_token = r.json()["sessionId"]
 
+# Get evaluation list
 r = requests.get(
     f"https://vbs.videobrowsing.org/api/v2/client/evaluation/list?session={session_token}",
     headers={"Accept": "application/json"},
@@ -18,15 +20,27 @@ r = requests.get(
 
 print(f"Status Code: {r.status_code}, Content: {r.json()}")
 
-# TODO: Use filter instead of picking first to ensure correct one is used
-evaluation_id = r.json()[0]["id"]
+# Find the correct evaluation ID
+evaluation_id = None
+for evaluation in r.json():
+    if evaluation["name"] == "IVADL2024":
+        evaluation_id = evaluation["id"]
+        break
 
+if evaluation_id is None:
+    raise ValueError("Evaluation 'IVADL2024' not found")
+
+# Prepare submit data
+task_name = "IVADL-TEST01"
 data = {
+    "taskName": task_name,
     "answerSets": [
         {
             "answers": [
                 {
-                    "mediaItemName": "00001",
+                    "text": None,
+                    "mediaItemName": "00019",
+                    "mediaCollectionName": "IVADL",
                     "start": 74570,
                     "end": 74570
                 }
@@ -35,6 +49,7 @@ data = {
     ]
 }
 
+# Submit
 r = requests.post(
     f"https://vbs.videobrowsing.org/api/v2/submit/{evaluation_id}?session={session_token}",
     json=data,
@@ -42,4 +57,4 @@ r = requests.post(
     timeout=1000,
 )
 
-print(f"Status Code: {r.status_code}, Content: {r.json()}")
+print(f"Status Code: {r.status_code}, Content: {r.json()}")
