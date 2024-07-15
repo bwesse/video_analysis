@@ -92,11 +92,12 @@ The best matching results are displayed to the user through a **Streamlit** fron
 - **src/**: Source code for the project.
   - **backend/**: Backend logic including database interactions.
     - **database.py**: Database interaction logic.
+    - **DRESCom.py**: script to communicate with DRES
+    - **SimilaritySearch.py**: implements the logic for the similarity search
   - **frontend/**: Frontend code for the Streamlit application.
-    - **gui_streamlit.py**: Streamlit GUI implementation.
+    - **streamlitTest.py**: first streamlit implementation.
+    - **streamlitVideoPlayback.py**: newest version of the streamlit GUI.
   - **utils/**: Utility functions and helpers.
-
-- **test/**: Folder used for testing, not important
 
 - **.gitignore**: Git ignore file.
 - **README.md**: Project README file.
