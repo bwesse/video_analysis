@@ -2,9 +2,8 @@
 # Ignore processed data
 data/
 tests/output_frames
-simon_polly/data1
-simon_polly/tests
 simon_polly
+
 
 
 # Byte-compiled / optimized / DLL files

@@ -56,4 +56,4 @@ r = requests.post(
 )
 
 print(f"Status Code: {r.status_code}, Content: {r.json()}")
-#print(f"JSON data being sent: {data}")  #debugging reasons
+print(f"JSON data being sent: {data}")  #debugging reasons
