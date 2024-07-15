@@ -15,15 +15,10 @@ The Video Analysis Project (VP) is a comprehensive system designed to allow user
 
 1. **Text Query**: Users can input a text query directly into the search bar.
 2. **Keyframe Query**: Users can upload a short keyframe.
-3. **Video Query**: Users can upload a full video, from which keyframes will be extracted.
-
-### Keyframe Extraction
-
-For video queries, the system uses **TransNetV2** to detect and extract keyframes. This ensures that only the most relevant frames are analyzed, optimizing performance and accuracy.
 
 ### Keyframe Analysis
 
-Once keyframes are extracted, they are analyzed using the **CLIP (Contrastive Language–Image Pretraining)** model. CLIP generates descriptive metadata for each keyframe, which is then used to match against the existing database.
+Queries are analyzed using the **CLIP (Contrastive Language–Image Pretraining)** model. CLIP generates descriptive metadata for each keyframe, which is then used to match against the existing database.
 
 ### Database Comparison
 
@@ -41,6 +36,10 @@ The best matching results are displayed to the user through a **Streamlit** fron
 ### TransNetV2
 - **Role**: Keyframe extraction from uploaded videos.
 - **Purpose**: Efficiently detects scene boundaries to select the most relevant frames for analysis.
+
+### BLIP
+- **Role**: Creating text descriptions for the keyframes.
+- **Purpose**: We used it to create a text description for each keyframe, which can then be used by **CLIP** to create a text embedding.
 
 ### CLIP
 - **Role**: Keyframe analysis and embedding generation.
@@ -72,22 +71,18 @@ The best matching results are displayed to the user through a **Streamlit** fron
 - **notebooks/**: Jupyter notebooks for exploratory data analysis and prototyping.
 
 - **scripts/**: Python scripts for various tasks including video processing, database management, and analysis.
-  - **analyze_keyframe_per_id.py**: Analyze keyframes for a specific video ID.
-  - **analyze_keyframes_with_description.py**: Analyze keyframes and generate descriptions.
-  - **analyze_keyframes.py**: General keyframe analysis.
-  - **check_database_connection.py**: Ensure database connection is established.
-  - **create_database.py**: Script to create the SQLite database.
-  - **detect_shot_boundaries.py**: Detect shot boundaries in videos.
-  - **insert_sample_data.py**: Insert sample data into the database.
-  - **list_keyframes.py**: List all keyframes in the database.
-  - **list_video_ids.py**: List all video IDs in the database.
-  - **store_analysis_results.py**: Store analysis results in the database.
-  - **store_video_metadata.py**: Store video metadata in the database.
-  - **transcode_video.py**: Transcode videos to a suitable format for processing.
-  - **verify_descriptions.py**: Verify the accuracy of keyframe descriptions.
-  - **verify_keyframe_analysis.py**: Verify the keyframe analysis process.
-  - **verify_video_id.py**: Verify the video ID against the database.
-  - **__init__.py**: Initialization script.
+  - **analysis/**:
+    -  **analyzeAll.py**: analyzes all keyframes and creates image and text embeddings.
+    -  **blip_txt_for_all.py**: creates text description for all keyframes.
+  - **creatingDB/**
+    -  **copydb.py**: used to copy the DB to some other folder.
+    -  **createSmallDB.py**: used to create a small test DB.
+    -  **create_database.py**: used to create the actual DB.
+  -  **debugging/info/**: in this folder we have different scripts to test if, for example, the setup of the DB worked correctly
+  -  **videoScripts/**:
+    -  **detect_shot_boundaries.py**: used to detect the shot boundaries in the videos.
+    -  **keyframExWExc.py**: extracts the keyframes and the timestamps
+    -  **storeTime.py**: stores the timestamps into the DB.
 
 - **setup/**: Environment setup scripts.
   - **env_check.py**: Check environment configurations.
@@ -101,14 +96,12 @@ The best matching results are displayed to the user through a **Streamlit** fron
     - **gui_streamlit.py**: Streamlit GUI implementation.
   - **utils/**: Utility functions and helpers.
 
-- **tests/**: Unit and integration tests.
-  - **test_extract_keyframes.py**: Test keyframe extraction functionality.
-  - **test_analyze_content.py**: Test content analysis functionality.
+- **test/**: Folder used for testing, not important
 
 - **.gitignore**: Git ignore file.
 - **README.md**: Project README file.
-- **requirements.txt**: Python dependencies.
-- **environment.yml**: Environment configuration file.
+- **Evaluation.md**: Evaluation task.
+- **TODO.md**: Temporary todo-list.
 
 ## Conclusion
 
@@ -171,16 +164,11 @@ python setup/env_check.py
 ```
 
 
-## Running the Project
-1. **Extract Keyframes**: Run `scripts/extract_keyframes.py`.
-2. **Analyze Content**: Run `scripts/analyze_content.py`.
-3. **Start Streamlit App**: Navigate to the project directory and run the latest version of the gui:
+## Running the Project (assumes that video folder has been downloaded and the DB has been created)
+1. **Extract Keyframes**: Run `scripts/videoScripts/keyframExWExc.py`.
+2. **Storage Process**: Run all the scripts to store timestamps and keyframes
+3. **Analyze Content**: Run `scripts/analysis/analyzeAll.py`.
+4. **Start Streamlit App**: Navigate to the project directory and run the latest version of the gui:
    ```sh
-   streamlit run src/frontend/gui_streamlit_X.py
+   streamlit run src/frontend/streamlitVideoPlayback.py
    ```
-
-## Running Tests
-You can run tests to ensure the functionality of the components as well as see the basic functionality:
-```sh
-pytest tests/
-```
