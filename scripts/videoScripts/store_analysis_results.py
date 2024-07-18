@@ -4,7 +4,7 @@ import os
 # Add the parent directory to the sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from scripts.not_important.analyze_keyframes_with_description import analyze_keyframes_with_description
+from scripts.analysis.analyzeAll import fetch_and_process_images
 import sqlite3
 
 def create_database():
@@ -46,5 +46,5 @@ def store_analysis_results(video_id, keyframes_dir, analysis_results):
 if __name__ == "__main__":
     video_id = 1  # Ensure this video ID exists in your Videos table
     keyframes_dir = '../data/keyframes/'
-    analysis_results = analyze_keyframes_with_description(video_id, keyframes_dir)
+    analysis_results = fetch_and_process_images(video_id, keyframes_dir)
     store_analysis_results(video_id, keyframes_dir, analysis_results)
