@@ -2,7 +2,7 @@
 
 # Video Analysis Project
 
-By Simon Puchas, Tim Schumann & Ben Wesse
+By Simon Puchas, Ben Wesse & Tim Schumann
 
 
 ## Project Overview
@@ -36,14 +36,17 @@ The best matching results are displayed to the user through a **Streamlit** fron
 ### TransNetV2
 - **Role**: Keyframe extraction from uploaded videos.
 - **Purpose**: Efficiently detects scene boundaries to select the most relevant frames for analysis.
+- **Source**: https://github.com/soCzech/TransNetV2
 
 ### BLIP
 - **Role**: Creating text descriptions for the keyframes.
 - **Purpose**: We used it to create a text description for each keyframe, which can then be used by **CLIP** to create a text embedding.
+- **Source**: https://huggingface.co/Salesforce/blip-image-captioning-base
 
 ### CLIP
 - **Role**: Keyframe analysis and embedding generation.
 - **Purpose**: Converts images and text into high-dimensional embeddings in a shared semantic space. This allows for effective comparison between keyframes and text-based queries, enabling the system to find the most relevant keyframe matches from the database.
+- **Source**: https://github.com/openai/CLIP
 
 ### SQLite
 - **Role**: Storage and retrieval of video metadata.
@@ -167,9 +170,10 @@ python setup/env_check.py
 
 ## Running the Project (assumes that video folder has been downloaded and the DB has been created)
 1. **Extract Keyframes**: Run `scripts/videoScripts/keyframExWExc.py`.
-2. **Storage Process**: Run all the scripts to store timestamps and keyframes
+2. **Storage Process**: Run `scripts/videoScripts/store_keyframes.py`.
 3. **Analyze Content**: Run `scripts/analysis/analyzeAll.py`.
 4. **Start Streamlit App**: Navigate to the project directory and run the latest version of the gui:
    ```sh
    streamlit run src/frontend/streamlitVideoPlayback.py
    ```
+#### Keep in mind to adjust all the needed paths and that you have all the needed models and packages installed
