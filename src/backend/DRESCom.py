@@ -28,7 +28,7 @@ if evaluation_id is None:
     raise ValueError("Evaluation 'IVADL2024' not found")
 
 
-task_name = "IVADL-TEST01"  #update with current task name
+task_name = "IVADL-TEST02"  #update with current task name
 
 data = {
     
@@ -38,10 +38,10 @@ data = {
             "answers": [
                 {
                     "text": None,
-                    "mediaItemName": "00189",   #update to fit found item
-                    "mediaCollection": "IVADL", #use the collection needed
-                    "start": 74570, #timestamp of the found item
-                    "end": 74570
+                    "mediaItemName": "00184",   #update to fit found item
+                    "mediaItemCollectionName": "IVADL", #use the collection needed
+                    "start": 159160, #timestamp of the found item
+                    "end": 159160 
                 }
             ]
         }
